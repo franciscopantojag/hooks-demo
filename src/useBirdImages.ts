@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import getBirdImages from './utils/getBirdImages';
 import { useQuery } from 'react-query';
 
-const timer = async (t = 500) => new Promise((res) => setTimeout(res, t));
+const timer = async (t = 1000) => new Promise((res) => setTimeout(res, t));
 
 export const useBirdImages = () => {
   const [birdImages, setBirdImages] = useState<undefined | string[]>();

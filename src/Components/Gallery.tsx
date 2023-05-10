@@ -12,8 +12,10 @@ const Gallery: React.FC<Props> = ({ images }) => {
     if (!prevButtonRef.current) return;
     prevButtonRef.current.focus();
   }, []);
+
   const maxIdx = useMemo(() => images.length - 1, [images.length]);
   const [imageIdx, setImageIdx] = useState(0);
+
   const onNextImage = useCallback(
     () =>
       setImageIdx((prev) => {
@@ -23,6 +25,7 @@ const Gallery: React.FC<Props> = ({ images }) => {
       }),
     [maxIdx]
   );
+
   const onPrevImage = useCallback(
     () =>
       setImageIdx((prev) => {
@@ -39,12 +42,13 @@ const Gallery: React.FC<Props> = ({ images }) => {
     const t = setInterval(onNextImage, IMAGE_CHANGE_MS);
     return () => clearInterval(t);
   }, [onNextImage]);
+
   return (
-    <div className="w-[800px] h-[500px] flex flex-col bg-white p-6">
+    <div className="w-[800px] h-[500px] flex flex-col justify-between bg-white px-6 py-8">
       <div className="h-[350px] flex justify-center">
         <img onClick={focusPrev} className="h-full block" src={imageUrl} />
       </div>
-      <div className="p-3 flex-grow flex justify-between items-center">
+      <div className="p-3 flex justify-between items-center">
         <button
           ref={prevButtonRef}
           onClick={onPrevImage}

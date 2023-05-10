@@ -9,25 +9,19 @@ const queryClient = new QueryClient();
 const MyApp = () => {
   const { isLoading, error, data } = useQueryImages();
   if (isLoading) {
-    return (
-      <Layout>
-        <LoadingSpinner />
-      </Layout>
-    );
+    return <LoadingSpinner />;
   }
   if (error || !data?.length) return <div>Error...</div>;
 
-  return (
-    <Layout>
-      <Gallery images={data} />
-    </Layout>
-  );
+  return <Gallery images={data} />;
 };
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <MyApp />
+      <Layout>
+        <MyApp />
+      </Layout>
     </QueryClientProvider>
   );
 };
